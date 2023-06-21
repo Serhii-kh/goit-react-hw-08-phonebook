@@ -63,7 +63,7 @@ export const signUp = async body => {
     const {data} = await usersInstance.post('/signup', body);
 		console.log(data);
 		console.log(data.token)
-    return data.token;
+    // return data.token;
   } catch (error) {
     console.log(error);
   }

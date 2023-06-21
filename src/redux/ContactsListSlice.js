@@ -35,9 +35,9 @@ export const ContactsListSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase([fetchContacts.fulfilled], fetchContactsFulfilled)
-      .addCase([postContact.fulfilled], postContactFulfilled)
-      .addCase([deleteContactById.fulfilled], deleteContactFulfilled)
+      .addCase(fetchContacts.fulfilled, fetchContactsFulfilled)
+      .addCase(postContact.fulfilled, postContactFulfilled)
+      .addCase(deleteContactById.fulfilled, deleteContactFulfilled)
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected)
       .addMatcher(({ type }) => type.endsWith('/fulfilled'), handleFulfilled);
