@@ -1,3 +1,5 @@
+import { handleFullfilled, handlePending, handleRejected } from 'redux/helpers/helpers authSlice';
+
 const { createSlice } = require('@reduxjs/toolkit');
 const { loginThunk } = require('./authThunks');
 
@@ -5,21 +7,6 @@ const initialState = {
   access_token: '',
   isLoadig: false,
   error: null,
-};
-
-const handleFullfilled = (state, { payload }) => {
-  state.isLoadig = false;
-  state.access_token = payload.token;
-};
-
-const handlePending = state => {
-  state.isLoadig = true;
-  state.error = '';
-};
-
-const handleRejected = (state, { error }) => {
-  state.isLoadig = false;
-  state.error = error.message;
 };
 
 const authSlice = createSlice({
@@ -35,3 +22,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const getSignUp = state => state.isSignedUp

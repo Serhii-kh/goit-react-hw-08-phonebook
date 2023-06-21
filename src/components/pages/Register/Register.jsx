@@ -5,6 +5,7 @@ import { signUp } from 'components/api';
 // import shortid from 'shortid';
 import css from './Register.module.css';
 import { useNavigate } from 'react-router-dom';
+// import { getSignUp } from 'redux/auth/authSlice';
 
 
 
@@ -30,12 +31,7 @@ const Register = () => {
 			name,
 			password,
 			email
-		})
-		.then(() => navigate('/login'))
-
-
-		
-	// name: 'Serg Nsv', email: 'serg@mail.co' 
+		}).then(() => navigate('/login'))
 
 		setName('');
 		setPassword('');
@@ -48,6 +44,7 @@ const Register = () => {
 		<>
 			<h1>Register page</h1>
 			<form className={css.ContactForm} onSubmit={handleSubmit}>
+
 				<label>
 					Name
 					<input
@@ -59,6 +56,7 @@ const Register = () => {
 						required
 					/>
 				</label>
+
 				<label>
 					Email
 					<input
@@ -69,6 +67,7 @@ const Register = () => {
 						required
 					/>
 				</label>
+
 				<label>
 					Password
 					<input
@@ -83,6 +82,7 @@ const Register = () => {
 				<button type="submit" className={css.submitBtn}>
 					Sign up
 				</button>
+
 			</form>
 		</>
 	)
