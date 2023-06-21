@@ -1,4 +1,4 @@
-export const handleFullfilled = (state, { payload }) => {
+export const handleLoginFullfilled = (state, { payload }) => {
   state.isLoadig = false;
   state.access_token = payload.token;
 };
@@ -8,7 +8,12 @@ export const handlePending = state => {
   state.error = '';
 };
 
-export const handleRejected = (state, { error }) => {
+export const handleRejected = (state, { payload }) => {
   state.isLoadig = false;
-  state.error = error.message;
+  state.error = payload;
+};
+
+export const handleSignUpFullfilled = state => {
+	state.isLoadig = false;
+	state.isSignedUp = true;
 };

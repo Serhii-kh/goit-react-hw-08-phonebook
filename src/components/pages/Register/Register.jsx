@@ -1,21 +1,15 @@
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-// import { getContacts } from 'redux/ContactsListSlice';
 import { signUp } from 'components/api';
-// import shortid from 'shortid';
 import css from './Register.module.css';
-import { useNavigate } from 'react-router-dom';
-// import { getSignUp } from 'redux/auth/authSlice';
-
-
-
+// import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('')
-	// const [error, setError] = useState(null)	
-	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	// const navigate = useNavigate();
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
@@ -27,16 +21,16 @@ const Register = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		signUp({
+
+		dispatch(signUp({
 			name,
 			password,
 			email
-		}).then(() => navigate('/login'))
+		}))
 
 		setName('');
 		setPassword('');
 		setEmail('');
-
 		e.currentTarget.reset();
 	};
 

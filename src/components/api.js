@@ -49,26 +49,28 @@ export const deleteContactById = createAsyncThunk(
     }
   }
 );
-
 // const setToken = (token) => {
 
 // }
-
-export const signUp = async body => {
-  try {
-    const { data } = await usersInstance.post('/signup', body);
-    console.log(data);
-    console.log(data.token);
-  } catch (error) {
-    console.log(error);
+export const signUp = createAsyncThunk(
+  'auth/signUp',
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await usersInstance.post('/signup', body);
+      console.log(data);
+      return data;
+    } catch (e) {
+      console.log(e);
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
-};
+);
 
-// export const logIn = async body => {
+// export const signUp = async body => {
 //   try {
-//     const { data } = await usersInstance.post('/login', body);
+//     const { data } = await usersInstance.post('/signup', body);
+//     console.log(data);
 //     console.log(data.token);
-//     return data;
 //   } catch (error) {
 //     console.log(error);
 //   }
@@ -76,11 +78,13 @@ export const signUp = async body => {
 
 export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
   try {
-		const { data } = await usersInstance.post('/login', body);
-		console.log(data.token);
+    const { data } = await usersInstance.post('/login', body);
+    console.log(data.token);
     return data;
   } catch (e) {
     console.log(e);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+

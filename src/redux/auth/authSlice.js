@@ -1,11 +1,17 @@
-import { handleFullfilled, handlePending, handleRejected } from 'redux/helpers/helpers authSlice';
+import {
+  handleLoginFullfilled,
+  handlePending,
+  handleSignUpFullfilled,
+  handleRejected,
+} from 'redux/helpers/helpers authSlice';
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk } from './authThunks';
+import { loginThunk, signUpThunk } from './authThunks';
 
 const initialState = {
   access_token: '',
   isLoadig: false,
-  error: null,
+	error: null,
+	isSignedUp: false,
 };
 
 const authSlice = createSlice({
@@ -14,7 +20,8 @@ const authSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(loginThunk.fulfilled, handleFullfilled)
+      .addCase(loginThunk.fulfilled, handleLoginFullfilled)
+      .addCase(signUpThunk.fulfilled, handleSignUpFullfilled)
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected);
   },
