@@ -1,7 +1,6 @@
 import { handleFullfilled, handlePending, handleRejected } from 'redux/helpers/helpers authSlice';
-
-const { createSlice } = require('@reduxjs/toolkit');
-const { loginThunk } = require('./authThunks');
+import { createSlice } from '@reduxjs/toolkit';
+import { loginThunk } from './authThunks';
 
 const initialState = {
   access_token: '',
@@ -22,4 +21,3 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const getSignUp = state => state.isSignedUp

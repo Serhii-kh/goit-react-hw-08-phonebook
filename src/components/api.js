@@ -51,39 +51,36 @@ export const deleteContactById = createAsyncThunk(
 );
 
 // const setToken = (token) => {
-	
+
 // }
 
 export const signUp = async body => {
   try {
-    const {data} = await usersInstance.post('/signup', body);
-		console.log(data);
-		console.log(data.token)
-    // return data.token;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const logIn = async body => {
-  try {
-    const { data } = await usersInstance.post('/login', body);
+    const { data } = await usersInstance.post('/signup', body);
     console.log(data);
-    return data.token;
+    console.log(data.token);
   } catch (error) {
     console.log(error);
   }
 };
 
-// export const signUp = createAsyncThunk(
-//   'fetch/signUp',
-//   async (body, thunkAPI) => {
-//     try {
-//       const data = await usersInstance.post('/signup', body);
-//       return data;
-//     } catch (e) {
-//       console.log(e);
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
+// export const logIn = async body => {
+//   try {
+//     const { data } = await usersInstance.post('/login', body);
+//     console.log(data.token);
+//     return data;
+//   } catch (error) {
+//     console.log(error);
 //   }
-// );
+// };
+
+export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
+  try {
+		const { data } = await usersInstance.post('/login', body);
+		console.log(data.token);
+    return data;
+  } catch (e) {
+    console.log(e);
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});

@@ -2,27 +2,29 @@
 import css from './LogIn.module.css'
 import { useState } from 'react';
 import { logIn } from 'components/api';
+import { useDispatch } from 'react-redux';
 
 const LogIn = () => {
 	const [password, setPassword] = useState('');
-	const [email, setEmail] = useState('')
+	const [email, setEmail] = useState('');
+	const dispatch = useDispatch();
 	// const navigate = useNavigate();
 
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
-
-		if (name === 'password') setPassword(value);
-		if (name === 'email') setEmail(value);
+		name === 'password' ? setPassword(value) : setEmail(value);
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		logIn({
-			password,
-			email,
-		})
-			// .then(() => navigate('/login'))
+
+		dispatch(logIn({ password, email }))
+
+		// logIn({
+		// 	password,
+		// 	email,
+		// })
 
 		setPassword('');
 		setEmail('');
