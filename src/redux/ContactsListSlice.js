@@ -2,32 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import { CONTACTS } from './constants';
 import { fetchContacts, postContact, deleteContactById } from 'components/api';
-
-const fetchContactsFulfilled = (state, { payload }) => {
-  state.items = payload;
-};
-
-const postContactFulfilled = (state, { payload }) => {
-  state.items.push(payload);
-};
-
-const deleteContactFulfilled = (state, { payload }) => {
-  const index = state.items.findIndex(contact => contact.id === payload.id);
-  state.items.splice(index, 1);
-};
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, { payload }) => {
-  state.error = payload;
-};
-
-const handleFulfilled = state => {
-  state.error = null;
-  state.isLoading = false;
-};
+import {
+  deleteContactFulfilled,
+  fetchContactsFulfilled,
+  handleFulfilled,
+  handlePending,
+  handleRejected,
+  postContactFulfilled,
+} from './helpers/helpers';
 
 export const ContactsListSlice = createSlice({
   name: CONTACTS,
