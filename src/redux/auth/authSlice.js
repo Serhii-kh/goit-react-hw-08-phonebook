@@ -3,9 +3,9 @@ import {
   handlePending,
   handleSignUpFullfilled,
   handleRejected,
-} from 'redux/helpers/helpers authSlice';
+} from 'redux/helpers/helpersAuth';
 import { createSlice } from '@reduxjs/toolkit';
-import { loginThunk, signUpThunk } from './authThunks';
+import { logInThunk, signUpThunk } from 'components/api';
 
 const initialState = {
   access_token: '',
@@ -20,7 +20,7 @@ const authSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(loginThunk.fulfilled, handleLoginFullfilled)
+      .addCase(logInThunk.fulfilled, handleLoginFullfilled)
       .addCase(signUpThunk.fulfilled, handleSignUpFullfilled)
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected);

@@ -52,7 +52,7 @@ export const deleteContactById = createAsyncThunk(
 // const setToken = (token) => {
 
 // }
-export const signUp = createAsyncThunk(
+export const signUpThunk = createAsyncThunk(
   'auth/signUp',
   async (body, thunkAPI) => {
     try {
@@ -76,7 +76,7 @@ export const signUp = createAsyncThunk(
 //   }
 // };
 
-export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
+export const logInThunk = createAsyncThunk('auth/login', async (body, thunkAPI) => {
   try {
     const { data } = await usersInstance.post('/login', body);
     console.log(data.token);

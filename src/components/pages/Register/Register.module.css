@@ -8,7 +8,7 @@
   outline: 1px solid lightslategray;
   border-radius: 4px;
 
-  max-width: 400px;
+  min-width: 300px;
 
   background-color: aliceblue;
 }

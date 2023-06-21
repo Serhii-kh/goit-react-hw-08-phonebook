@@ -9,7 +9,7 @@ import {
   handlePending,
   handleRejected,
   postContactFulfilled,
-} from './helpers/helpers contactsSlice';
+} from './helpers/helpersContacts';
 
 export const ContactsListSlice = createSlice({
   name: CONTACTS,

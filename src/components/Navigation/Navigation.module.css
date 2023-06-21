@@ -1,0 +1,13 @@
+.Navigation {
+	display: inline-flex;
+	gap: 20px;
+	font-size: 18px;
+}
+
+.active-link {
+	color: rgb(235, 87, 87);
+}
+
+header {
+	margin-bottom: 15px;
+}

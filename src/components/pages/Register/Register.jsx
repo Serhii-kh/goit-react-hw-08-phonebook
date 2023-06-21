@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { signUp } from 'components/api';
 import css from './Register.module.css';
+import { signUpThunk } from 'components/api';
 // import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -22,7 +22,7 @@ const Register = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		dispatch(signUp({
+		dispatch(signUpThunk({
 			name,
 			password,
 			email

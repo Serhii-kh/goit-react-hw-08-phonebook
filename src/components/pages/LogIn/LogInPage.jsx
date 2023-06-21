@@ -1,10 +1,10 @@
 // import { useNavigate } from 'react-router-dom';
 import css from './LogIn.module.css'
 import { useState } from 'react';
-import { logIn } from 'components/api';
+import { logInThunk } from 'components/api';
 import { useDispatch } from 'react-redux';
 
-const LogIn = () => {
+const LogInPage = () => {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const LogIn = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		dispatch(logIn({ password, email }))
+		dispatch(logInThunk({ password, email }))
 
 		// logIn({
 		// 	password,
@@ -65,4 +65,4 @@ const LogIn = () => {
 	)
 }
 
-export default LogIn;
+export default LogInPage;
