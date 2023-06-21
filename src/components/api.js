@@ -3,12 +3,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // axios.defaults.baseURL = 'https://6488c5720e2469c038fe5586.mockapi.io/contacts';
 const CONTACTS_URL = 'https://connections-api.herokuapp.com/contacts';
-// const USERS_URL = 'https://connections-api.herokuapp.com/users';
-
+const USERS_URL = 'https://connections-api.herokuapp.com/users';
 
 const contactsInstance = axios.create({
-	baseURL: CONTACTS_URL,
-})
+  baseURL: CONTACTS_URL,
+});
+const usersInstance = axios.create({
+  baseURL: USERS_URL,
+});
 
 // const CONTACTS = '/contacts'
 // const USERS = '/users'
@@ -51,3 +53,41 @@ export const deleteContactById = createAsyncThunk(
     }
   }
 );
+
+// const setToken = (token) => {
+	
+// }
+
+export const signUp = async body => {
+  try {
+    const {data} = await usersInstance.post('/signup', body);
+		console.log(data);
+		console.log(data.token)
+    return data.token;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logIn = async body => {
+  try {
+    const { data } = await usersInstance.post('/login', body);
+    console.log(data);
+    return data.token;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// export const signUp = createAsyncThunk(
+//   'fetch/signUp',
+//   async (body, thunkAPI) => {
+//     try {
+//       const data = await usersInstance.post('/signup', body);
+//       return data;
+//     } catch (e) {
+//       console.log(e);
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
