@@ -49,9 +49,12 @@ export const deleteContactById = createAsyncThunk(
     }
   }
 );
-// const setToken = (token) => {
 
-// }
+
+const setToken = access_token => {
+  usersInstance.defaults.headers.common['Authorization'] = access_token;
+};
+
 export const signUpThunk = createAsyncThunk(
   'auth/signUp',
   async (body, thunkAPI) => {
@@ -66,15 +69,20 @@ export const signUpThunk = createAsyncThunk(
   }
 );
 
-export const logInThunk = createAsyncThunk('auth/login', async (body, thunkAPI) => {
-  try {
-    const { data } = await usersInstance.post('/login', body);
-    console.log(data.token);
-    return data;
-  } catch (e) {
-    console.log(e);
-    return thunkAPI.rejectWithValue(e.message);
+export const logInThunk = createAsyncThunk(
+  'auth/login',
+  async (body, thunkAPI) => {
+    try {
+			const { data } = await usersInstance.post('/login', body);
+			console.log(data)
+      console.log(data.token);
+
+      if ('token' in data) setToken(`Bearer ${data.token}`);
+
+      return data;
+    } catch (e) {
+      console.log(e);
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
-});
-
-
+);

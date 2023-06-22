@@ -1,6 +1,7 @@
 export const handleLoginFullfilled = (state, { payload }) => {
   state.isLoadig = false;
-  state.access_token = payload.token;
+	// state.access_token = payload.token;
+	state.isLoginned = true;
 };
 
 export const handlePending = state => {
@@ -13,7 +14,8 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 
-export const handleSignUpFullfilled = state => {
+export const handleSignUpFullfilled = (state, {payload}) => {
 	state.isLoadig = false;
+	// state.access_token = payload.token;
 	state.isSignedUp = true;
 };

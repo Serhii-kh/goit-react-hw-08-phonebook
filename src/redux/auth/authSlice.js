@@ -10,8 +10,9 @@ import { logInThunk, signUpThunk } from 'components/api';
 const initialState = {
   access_token: '',
   isLoadig: false,
-	error: null,
-	isSignedUp: false,
+  error: null,
+  isSignedUp: false,
+  isLoginned: false,
 };
 
 const authSlice = createSlice({
