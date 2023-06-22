@@ -50,10 +50,31 @@ export const deleteContactById = createAsyncThunk(
   }
 );
 
-
-const setToken = access_token => {
-  usersInstance.defaults.headers.common['Authorization'] = access_token;
+const setToken = token => {
+  usersInstance.defaults.headers.common['Authorization'] = token;
 };
+
+// export const signUp = async body => {
+//   try {
+//     return await usersInstance.post('/signup', body);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+
+// export const signUpThunk = createAsyncThunk(
+//   'auth/signUp',
+//   async (body, thunkAPI) => {
+//     try {
+//       const { data } = await signUp(body);
+//       console.log(data);
+//       return data;
+//     } catch (e) {
+//       console.log(e);
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
 
 export const signUpThunk = createAsyncThunk(
   'auth/signUp',
@@ -69,20 +90,31 @@ export const signUpThunk = createAsyncThunk(
   }
 );
 
-export const logInThunk = createAsyncThunk(
-  'auth/login',
-  async (body, thunkAPI) => {
+export const getProfileThunk = createAsyncThunk(
+  'auth/profile',
+  async thunkAPI => {
     try {
-			const { data } = await usersInstance.post('/login', body);
-			console.log(data)
-      console.log(data.token);
-
-      if ('token' in data) setToken(`Bearer ${data.token}`);
-
+      const { data } = await usersInstance('/current');
+      console.log(data);
       return data;
     } catch (e) {
       console.log(e);
       return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const logInThunk = createAsyncThunk(
+  'auth/login',
+  async (body, { dispatch, rejectWithValue }) => {
+    try {
+      const { data } = await usersInstance.post('/login', body);
+      if ('token' in data) setToken(`Bearer ${data.token}`);
+      dispatch(getProfileThunk());
+      return data;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e.message);
     }
   }
 );

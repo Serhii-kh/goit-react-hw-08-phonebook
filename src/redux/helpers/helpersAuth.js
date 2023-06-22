@@ -1,7 +1,7 @@
 export const handleLoginFullfilled = (state, { payload }) => {
   state.isLoadig = false;
-	// state.access_token = payload.token;
-	state.isLoginned = true;
+  state.access_token = payload.token;
+  state.isLoginned = true;
 };
 
 export const handlePending = state => {
@@ -9,13 +9,18 @@ export const handlePending = state => {
   state.error = '';
 };
 
-export const handleRejected = (state, { payload }) => {
+export const handleRejected = (state, { error, payload }) => {
   state.isLoadig = false;
-  state.error = payload;
+  state.error = error ? error : payload;
 };
 
-export const handleSignUpFullfilled = (state, {payload}) => {
-	state.isLoadig = false;
-	// state.access_token = payload.token;
-	state.isSignedUp = true;
+export const handleSignUpFullfilled = (state, { payload }) => {
+  state.isLoadig = false;
+  // state.access_token = payload.token;
+  state.isSignedUp = true;
+};
+
+export const handleProfileFullfilled = (state, { payload }) => {
+  state.isLoadig = false;
+  state.profile = payload;
 };
