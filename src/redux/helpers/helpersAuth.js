@@ -11,7 +11,7 @@ export const handlePending = state => {
 
 export const handleRejected = (state, { error, payload }) => {
   state.isLoadig = false;
-  state.error = error ? error : payload;
+  state.error = payload ?? error.message;
 };
 
 export const handleSignUpFullfilled = (state, { payload }) => {

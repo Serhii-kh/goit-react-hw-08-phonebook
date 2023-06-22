@@ -19,7 +19,7 @@ export const fetchContacts = createAsyncThunk(
       return data;
     } catch (e) {
       console.log(e);
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data.message);
     }
   }
 );
@@ -32,7 +32,7 @@ export const postContact = createAsyncThunk(
       return data;
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
 );
@@ -50,7 +50,7 @@ export const deleteContactById = createAsyncThunk(
   }
 );
 
-const setToken = token => {
+export const setToken = token => {
   usersInstance.defaults.headers.common['Authorization'] = token;
 };
 
@@ -85,7 +85,7 @@ export const signUpThunk = createAsyncThunk(
       return data;
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
 );
@@ -94,12 +94,13 @@ export const getProfileThunk = createAsyncThunk(
   'auth/profile',
   async thunkAPI => {
     try {
-      const { data } = await usersInstance('/current');
+			const { data } = await usersInstance('/current');
+			console.log('yours profile getted successfully!')
       console.log(data);
       return data;
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
 );
@@ -110,11 +111,13 @@ export const logInThunk = createAsyncThunk(
     try {
       const { data } = await usersInstance.post('/login', body);
       if ('token' in data) setToken(`Bearer ${data.token}`);
-      dispatch(getProfileThunk());
+			dispatch(getProfileThunk());
+			console.log('you are logged and we set profile!')
+			console.log(data)
       return data;
     } catch (e) {
       console.log(e);
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data.message);
     }
   }
 );
