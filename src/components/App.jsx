@@ -10,7 +10,7 @@ const LogInPage = lazy(() => import("../components/pages/LogIn/LogInPage"));
 export const App = () => {
 	return (
 		<>
-			<Toaster />
+			<Toaster gutter={20} toastOptions={{ duration: 1000, } } />
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Register />} />

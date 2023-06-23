@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-// import shortid from 'shortid';
-import css from '../ContactForm/ContactForm.module.css';
 import { getContacts } from 'redux/ContactsListSlice';
 import { postContact } from 'components/api';
 import { toast } from 'react-hot-toast';
+import css from '../ContactForm/ContactForm.module.css';
 
 export const ContactForm = () => {
 	const [name, setName] = useState('');
@@ -14,13 +13,12 @@ export const ContactForm = () => {
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
-
+		
 		name === 'name' ? setName(value) : setNumber(value)
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		// const id = shortid.generate();
 
 		if (
 			contacts.find(
@@ -29,12 +27,8 @@ export const ContactForm = () => {
 		) {
 			toast.error(`${name} is already in contacts!`);
 		} else {
-			dispatch(postContact(
-				{
-					name,
-					number,
-				}
-			))
+			dispatch(postContact({ name, number, })
+			)
 		}
 
 		setName('');

@@ -44,7 +44,7 @@ import css from './Contacts.module.css';
 			<Filter changeFilter={changeFilter} />
 			{contacts.length > 0 && <ContactsList contacts={filteredContacts} />}
 			{error && <h3>{error}</h3>}
-			{/* {isLoading && <h3>Loading...</h3>} */}
+			{isLoading && <h3>Loading...</h3>}
 		</div>
 	);
 };

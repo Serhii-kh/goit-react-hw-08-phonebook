@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { toast } from 'react-hot-toast';
 
 const CONTACTS_URL = 'https://connections-api.herokuapp.com/contacts';
 const USERS_URL = 'https://connections-api.herokuapp.com/users';
@@ -21,7 +22,7 @@ export const fetchContacts = createAsyncThunk(
       const { data } = await contactsInstance('/');
       return data;
     } catch (e) {
-      console.log(e);
+			console.log(e);
       return rejectWithValue(e.response.data.message);
     }
   }
@@ -47,7 +48,7 @@ export const deleteContactById = createAsyncThunk(
       const { data } = await contactsInstance.delete(`/${contactId}`);
       return data;
     } catch (e) {
-      console.log(e);
+			console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
