@@ -3,22 +3,15 @@ import {
   handlePending,
   handleSignUpFullfilled,
   handleRejected,
-	handleProfileFullfilled,
-} from 'redux/helpers/helpersAuth';
+  handleProfileFullfilled,
+} from 'redux/helpers/auth';
 import { createSlice } from '@reduxjs/toolkit';
-import { getProfileThunk, logInThunk, signUpThunk } from 'components/api';
-
-export const initialState = {
-  access_token: '',
-  isLoadig: false,
-  error: null,
-	isLoginned: false,
-	profile: null,
-};
+import { getProfileThunk, logInThunk, signUpThunk } from 'components/API/api';
+import { authInitialstate } from 'redux/helpers/authInitialState';
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: authInitialstate,
 
   extraReducers: builder => {
     builder

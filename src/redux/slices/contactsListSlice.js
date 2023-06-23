@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialState } from './initialState';
-import { CONTACTS } from './constants';
-import { fetchContacts, postContact, deleteContactById } from 'components/api';
+import { contactsInitialState } from 'redux/helpers/contactsInitialState';
+import {
+  fetchContacts,
+  postContact,
+  deleteContactById,
+} from 'components/API/api';
 import {
   deleteContactFulfilled,
   fetchContactsFulfilled,
@@ -9,11 +12,13 @@ import {
   handlePending,
   handleRejected,
   postContactFulfilled,
-} from './helpers/helpersContacts';
+} from '../helpers/contacts';
+
+import { CONTACTS } from 'redux/helpers/constants';
 
 export const ContactsListSlice = createSlice({
   name: CONTACTS,
-  initialState,
+  initialState: contactsInitialState,
 
   extraReducers: builder => {
     builder
@@ -27,6 +32,3 @@ export const ContactsListSlice = createSlice({
 });
 
 export const contactReducer = ContactsListSlice.reducer;
-export const getContacts = state => state.contacts.items;
-export const getIsLoading = state => state.contacts.isLoading;
-export const getError = state => state.contacts.error;

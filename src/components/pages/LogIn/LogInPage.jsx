@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import css from './LogIn.module.css'
 import { useEffect, useState } from 'react';
-import { getIsLoginned, logInThunk } from 'components/api';
+import { logInThunk } from 'components/API/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import { getIsLoginned } from 'redux/selectors/selectors';
 
 const LogInPage = () => {
 	const [password, setPassword] = useState('');

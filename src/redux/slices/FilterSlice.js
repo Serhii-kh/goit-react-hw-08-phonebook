@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FILTER } from './constants';
+import { FILTER } from '../helpers/constants';
 
 export const FilterSlice = createSlice({
   name: FILTER,
   initialState: '',
 
   reducers: {
-    addFilterText(state, {payload}) {
-      return state = payload;
+    addFilterText(state, { payload }) {
+      return (state = payload);
     },
   },
 });

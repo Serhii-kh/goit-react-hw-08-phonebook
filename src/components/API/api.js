@@ -1,12 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { toast } from 'react-hot-toast';
 
 const CONTACTS_URL = 'https://connections-api.herokuapp.com/contacts';
 const USERS_URL = 'https://connections-api.herokuapp.com/users';
-
-export const getIsAuth = state => state.auth.access_token;
-export const getIsLoginned = state => state.auth.isLoginned;
 
 const contactsInstance = axios.create({
   baseURL: CONTACTS_URL,
@@ -22,7 +18,7 @@ export const fetchContacts = createAsyncThunk(
       const { data } = await contactsInstance('/');
       return data;
     } catch (e) {
-			console.log(e);
+      console.log(e);
       return rejectWithValue(e.response.data.message);
     }
   }
@@ -48,7 +44,7 @@ export const deleteContactById = createAsyncThunk(
       const { data } = await contactsInstance.delete(`/${contactId}`);
       return data;
     } catch (e) {
-			console.log(e);
+      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -58,32 +54,6 @@ export const setToken = token => {
   usersInstance.defaults.headers.common['Authorization'] = token;
   contactsInstance.defaults.headers.common['Authorization'] = token;
 };
-
-// export const setToken = token => {
-//   contactsInstance.defaults.headers.common['Authorization'] = token;
-// };
-
-// export const signUp = async body => {
-//   try {
-//     return await usersInstance.post('/signup', body);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
-// export const signUpThunk = createAsyncThunk(
-//   'auth/signUp',
-//   async (body, thunkAPI) => {
-//     try {
-//       const { data } = await signUp(body);
-//       console.log(data);
-//       return data;
-//     } catch (e) {
-//       console.log(e);
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
 
 export const signUpThunk = createAsyncThunk(
   'auth/signUp',
@@ -124,6 +94,17 @@ export const logInThunk = createAsyncThunk(
       return data;
     } catch (e) {
       console.log(e);
+      return rejectWithValue(e.response.data.message);
+    }
+  }
+);
+
+export const logOutThunk = createAsyncThunk(
+  'auth/logout',
+  async ({ rejectWithValue }) => {
+    try {
+      return await usersInstance.post('/logout');
+    } catch (e) {
       return rejectWithValue(e.response.data.message);
     }
   }

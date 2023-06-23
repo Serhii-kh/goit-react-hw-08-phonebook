@@ -3,22 +3,24 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import { Filter } from 'components/Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFilterText } from 'redux/FilterSlice';
-import { getContacts, getError, getIsLoading } from 'redux/ContactsListSlice';
-import { getFilterValue } from 'redux/FilterSlice';
-import { fetchContacts } from 'components/api';
+import { addFilterText } from 'redux/slices/FilterSlice';
+import { getContacts, getError, getIsLoading } from 'redux/selectors/selectors';
+import { getFilterValue } from 'redux/slices/FilterSlice';
+import { fetchContacts } from 'components/API/api';
+import { getIsLoginned } from 'redux/selectors/selectors';
 import css from './Contacts.module.css';
 
- const Contacts = () => {
+const Contacts = () => {
 	const contacts = useSelector(getContacts);
 	const filterValue = useSelector(getFilterValue);
 	const isLoading = useSelector(getIsLoading);
 	const error = useSelector(getError);
 	const dispatch = useDispatch();
+	const isLoginned = useSelector(getIsLoginned)
 
 	useEffect(() => {
-		dispatch(fetchContacts())
-	}, [dispatch])
+		isLoginned && dispatch(fetchContacts())
+	}, [dispatch, isLoginned])
 
 	const changeFilter = e => {
 		const { value } = e.currentTarget;

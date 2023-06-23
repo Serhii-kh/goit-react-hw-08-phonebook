@@ -1,13 +1,10 @@
-import { ContactsListSlice } from "redux/ContactsListSlice";
-import { FilterSlice } from "redux/FilterSlice";
-import { combineReducers } from "@reduxjs/toolkit";
-import { authReducer } from "redux/auth/authSlice";
+import { ContactsListSlice } from 'redux/slices/contactsListSlice';
+import { FilterSlice } from 'redux/slices/FilterSlice';
+import { combineReducers } from '@reduxjs/toolkit';
+import { authReducer } from 'redux/slices/authSlice';
 
 export const rootReducer = combineReducers({
-	contacts: ContactsListSlice.reducer,
-	filter: FilterSlice.reducer,
-	auth: authReducer,
-})
-
-
-
+  contacts: ContactsListSlice.reducer,
+  filter: FilterSlice.reducer,
+  auth: authReducer,
+});

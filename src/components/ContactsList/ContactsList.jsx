@@ -1,5 +1,5 @@
 import { ContactsListItem } from 'components/ContactsListItem/ContactsListItem';
-import { deleteContactById } from 'components/api';
+import { deleteContactById } from 'components/API/api';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import css from '../ContactsList/ContactList.module.css';

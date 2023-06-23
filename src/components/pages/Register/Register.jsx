@@ -1,16 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import css from './Register.module.css';
-import { getIsAuth, signUpThunk } from 'components/api';
+import { signUpThunk } from 'components/API/api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { getIsSignedUp } from 'redux/selectors/selectors';
 
 const Register = () => {
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('')
 	const dispatch = useDispatch();
-	const isAuth = useSelector(getIsAuth)
+	const isSignedUp = useSelector(getIsSignedUp);
 	const navigate = useNavigate();
 
 	const handleChange = e => {
@@ -37,9 +38,9 @@ const Register = () => {
 	};
 
 	useEffect(() => {
-		isAuth && navigate('/login')
-		isAuth && toast.success('You have successfully signed up!')
-	}, [isAuth, navigate])
+		isSignedUp && navigate('/login')
+		isSignedUp && toast.success('You have successfully signed up!')
+	}, [isSignedUp, navigate])
 
 	return (
 		<>
