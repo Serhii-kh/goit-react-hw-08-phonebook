@@ -1,15 +1,15 @@
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import css from './LogIn.module.css'
-import { useState } from 'react';
-import { logInThunk } from 'components/api';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { getIsAuth, logInThunk } from 'components/api';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LogInPage = () => {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const dispatch = useDispatch();
-	// const navigate = useNavigate();
-
+	const navigate = useNavigate();
+	const isAuth = useSelector(getIsAuth)
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
@@ -21,16 +21,13 @@ const LogInPage = () => {
 
 		dispatch(logInThunk({ password, email }))
 
-		// logIn({
-		// 	password,
-		// 	email,
-		// })
-
 		setPassword('');
 		setEmail('');
 
 		e.currentTarget.reset();
 	};
+
+	useEffect(() => { isAuth && navigate('/contacts') }, [isAuth, navigate])
 
 	return (
 		<>

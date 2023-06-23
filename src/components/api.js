@@ -4,6 +4,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const CONTACTS_URL = 'https://connections-api.herokuapp.com/contacts';
 const USERS_URL = 'https://connections-api.herokuapp.com/users';
 
+export const getIsAuth = state => state.auth.access_token;
+
 const contactsInstance = axios.create({
   baseURL: CONTACTS_URL,
 });
@@ -94,8 +96,8 @@ export const getProfileThunk = createAsyncThunk(
   'auth/profile',
   async thunkAPI => {
     try {
-			const { data } = await usersInstance('/current');
-			console.log('yours profile getted successfully!')
+      const { data } = await usersInstance('/current');
+      console.log('yours profile getted successfully!');
       console.log(data);
       return data;
     } catch (e) {
@@ -111,9 +113,9 @@ export const logInThunk = createAsyncThunk(
     try {
       const { data } = await usersInstance.post('/login', body);
       if ('token' in data) setToken(`Bearer ${data.token}`);
-			dispatch(getProfileThunk());
-			console.log('you are logged and we set profile!')
-			console.log(data)
+      dispatch(getProfileThunk());
+      console.log('you are logged and we set profile!');
+      console.log(data);
       return data;
     } catch (e) {
       console.log(e);
