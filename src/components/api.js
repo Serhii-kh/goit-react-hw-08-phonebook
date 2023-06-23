@@ -5,6 +5,7 @@ const CONTACTS_URL = 'https://connections-api.herokuapp.com/contacts';
 const USERS_URL = 'https://connections-api.herokuapp.com/users';
 
 export const getIsAuth = state => state.auth.access_token;
+export const getIsLoginned = state => state.auth.isLoginned;
 
 const contactsInstance = axios.create({
   baseURL: CONTACTS_URL,
@@ -54,7 +55,12 @@ export const deleteContactById = createAsyncThunk(
 
 export const setToken = token => {
   usersInstance.defaults.headers.common['Authorization'] = token;
+  contactsInstance.defaults.headers.common['Authorization'] = token;
 };
+
+// export const setToken = token => {
+//   contactsInstance.defaults.headers.common['Authorization'] = token;
+// };
 
 // export const signUp = async body => {
 //   try {
@@ -83,7 +89,7 @@ export const signUpThunk = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { data } = await usersInstance.post('/signup', body);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (e) {
       console.log(e);
@@ -97,8 +103,7 @@ export const getProfileThunk = createAsyncThunk(
   async thunkAPI => {
     try {
       const { data } = await usersInstance('/current');
-      console.log('yours profile getted successfully!');
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (e) {
       console.log(e);
@@ -114,8 +119,7 @@ export const logInThunk = createAsyncThunk(
       const { data } = await usersInstance.post('/login', body);
       if ('token' in data) setToken(`Bearer ${data.token}`);
       dispatch(getProfileThunk());
-      console.log('you are logged and we set profile!');
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (e) {
       console.log(e);

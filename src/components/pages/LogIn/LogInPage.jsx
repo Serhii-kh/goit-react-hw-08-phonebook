@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import css from './LogIn.module.css'
 import { useEffect, useState } from 'react';
-import { getIsAuth, logInThunk } from 'components/api';
+import { getIsLoginned, logInThunk } from 'components/api';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
 
 const LogInPage = () => {
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const isAuth = useSelector(getIsAuth)
+	const isLoginned = useSelector(getIsLoginned)
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
@@ -27,7 +28,10 @@ const LogInPage = () => {
 		e.currentTarget.reset();
 	};
 
-	useEffect(() => { isAuth && navigate('/contacts') }, [isAuth, navigate])
+	useEffect(() => {
+		isLoginned && navigate('/contacts')
+		isLoginned && toast.success('You have successfully logged in!')
+	}, [isLoginned, navigate])
 
 	return (
 		<>

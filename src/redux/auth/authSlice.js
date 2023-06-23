@@ -12,7 +12,6 @@ export const initialState = {
   access_token: '',
   isLoadig: false,
   error: null,
-  isSignedUp: false,
 	isLoginned: false,
 	profile: null,
 };

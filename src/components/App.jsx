@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "../components/Layout/Layout";
 import NotFound from "./pages/NotFound/Notfound";
+import { Toaster } from "react-hot-toast";
 const Register = lazy(() => import("../components/pages/Register/Register"));
 const Contacts = lazy(() => import("../components/pages/Contacts/Contacts"));
 const LogInPage = lazy(() => import("../components/pages/LogIn/LogInPage"));
@@ -9,6 +10,7 @@ const LogInPage = lazy(() => import("../components/pages/LogIn/LogInPage"));
 export const App = () => {
 	return (
 		<>
+			<Toaster />
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Register />} />

@@ -16,8 +16,7 @@ export const handleRejected = (state, { error, payload }) => {
 
 export const handleSignUpFullfilled = (state, { payload }) => {
   state.isLoadig = false;
-  // state.access_token = payload.token;
-  state.isSignedUp = true;
+  state.access_token = payload.token;
 };
 
 export const handleProfileFullfilled = (state, { payload }) => {
