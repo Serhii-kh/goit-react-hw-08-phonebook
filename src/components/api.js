@@ -28,7 +28,7 @@ export const fetchContacts = createAsyncThunk(
 );
 
 export const postContact = createAsyncThunk(
-  'contacts/addContact',
+  'contacts/postContact',
   async (contact, thunkAPI) => {
     try {
       const { data } = await contactsInstance.post('/', contact);

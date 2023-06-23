@@ -20,7 +20,7 @@ const LogInPage = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		dispatch(logInThunk({ password, email }))
+		dispatch(logInThunk({ password, email, }))
 
 		setPassword('');
 		setEmail('');

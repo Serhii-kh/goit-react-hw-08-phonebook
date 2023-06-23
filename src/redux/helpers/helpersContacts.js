@@ -1,9 +1,9 @@
 export const fetchContactsFulfilled = (state, { payload }) => {
-  state.items = payload;
+	state.items = payload;
 };
 
 export const postContactFulfilled = (state, { payload }) => {
-  state.items.push(payload);
+state.items.push(payload);
 };
 
 export const deleteContactFulfilled = (state, { payload }) => {
@@ -15,8 +15,8 @@ export const handlePending = state => {
   state.isLoading = true;
 };
 
-export const handleRejected = (state, { payload }) => {
-  state.error = payload;
+export const handleRejected = (state, {error, payload }) => {
+  state.error = payload ?? error;
 };
 
 export const handleFulfilled = state => {

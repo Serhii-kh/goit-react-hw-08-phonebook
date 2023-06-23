@@ -1,44 +1,44 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 import css from '../ContactForm/ContactForm.module.css';
 import { getContacts } from 'redux/ContactsListSlice';
 import { postContact } from 'components/api';
+import { toast } from 'react-hot-toast';
 
 export const ContactForm = () => {
 	const [name, setName] = useState('');
-	const [phone, setPhone] = useState('');
+	const [number, setNumber] = useState('');
 	const dispatch = useDispatch();
 	const contacts = useSelector(getContacts);
 
 	const handleChange = e => {
 		const { name, value } = e.currentTarget;
 
-		if (name === 'name') setName(value);
-		if (name === 'phone') setPhone(value);
+		name === 'name' ? setName(value) : setNumber(value)
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		const id = shortid.generate();
+		// const id = shortid.generate();
 
 		if (
 			contacts.find(
 				contact => contact.name.toLowerCase() === name.toLowerCase()
 			)
 		) {
-			alert(`${name} is already in contacts!`);
+			toast.error(`${name} is already in contacts!`);
 		} else {
-			dispatch(postContact({
-				id,
-				name,
-				phone,
-			}))
+			dispatch(postContact(
+				{
+					name,
+					number,
+				}
+			))
 		}
 
 		setName('');
-		setPhone('');
-
+		setNumber('');
 		e.currentTarget.reset();
 	};
 
@@ -60,10 +60,10 @@ export const ContactForm = () => {
 					Number
 					<input
 						type="tel"
-						name="phone"
+						name="number"
 						onChange={handleChange}
-						value={phone}
-						title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+						value={number}
+						title="number number must be digits and can contain spaces, dashes, parentheses and can start with +"
 						required
 					/>
 				</label>
