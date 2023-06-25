@@ -64,12 +64,10 @@ export const signUpThunk = createAsyncThunk(
   'auth/signUp',
   async (body, thunkAPI) => {
     try {
-      const { data } = await usersInstance.post('/signup', body);
-      // console.log(data);
-      return data;
+         await usersInstance.post('/signup', body);
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue(e.response.data.message);
+      return thunkAPI.rejectWithValue(e);
     }
   }
 );
@@ -79,7 +77,6 @@ export const getProfileThunk = createAsyncThunk(
   async thunkAPI => {
     try {
       const { data } = await usersInstance('/current');
-      // console.log(data);
       return data;
     } catch (e) {
       console.log(e);
@@ -97,8 +94,8 @@ export const logInThunk = createAsyncThunk(
       dispatch(getProfileThunk());
       return data;
     } catch (e) {
-      // console.log(e);
-      return rejectWithValue(e.response.data.message);
+      console.log(e);
+      return rejectWithValue(e);
     }
   }
 );
