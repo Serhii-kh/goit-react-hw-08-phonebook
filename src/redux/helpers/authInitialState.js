@@ -4,5 +4,5 @@ export const authInitialstate = {
   error: null,
 	isLoginned: false,
 	isSignedUp: false,
-  profile: null,
+  profile: [],
 };

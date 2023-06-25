@@ -14,9 +14,16 @@ export const handleProfileFullfilled = (state, { payload }) => {
   state.profile = payload;
 };
 
+export const handleLogOutFulfilled = (state) => {
+	state.isLoadig = false;
+	state.access_token = '';
+	state.profile = [];
+	state.isLoginned = false;
+};
+
 export const handlePending = state => {
   state.isLoadig = true;
-  state.error = '';
+  state.error = null;
 };
 
 export const handleRejected = (state, { error, payload }) => {

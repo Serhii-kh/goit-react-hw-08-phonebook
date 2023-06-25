@@ -55,6 +55,11 @@ export const setToken = token => {
   contactsInstance.defaults.headers.common['Authorization'] = token;
 };
 
+export const deleteToken = () => { 
+	delete usersInstance.defaults.headers.common['Authorization'];
+  delete contactsInstance.defaults.headers.common['Authorization'];
+ }
+
 export const signUpThunk = createAsyncThunk(
   'auth/signUp',
   async (body, thunkAPI) => {
@@ -90,10 +95,9 @@ export const logInThunk = createAsyncThunk(
       const { data } = await usersInstance.post('/login', body);
       if ('token' in data) setToken(`Bearer ${data.token}`);
       dispatch(getProfileThunk());
-      // console.log(data);
       return data;
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       return rejectWithValue(e.response.data.message);
     }
   }
@@ -101,11 +105,11 @@ export const logInThunk = createAsyncThunk(
 
 export const logOutThunk = createAsyncThunk(
   'auth/logout',
-  async ({ rejectWithValue }) => {
+  async () => {
     try {
-      return await usersInstance.post('/logout');
+			return await usersInstance.post('/logout');
     } catch (e) {
-      return rejectWithValue(e.response.data.message);
+      console.log(e);
     }
   }
 );

@@ -39,15 +39,17 @@ const Contacts = () => {
 	const filteredContacts = getFilteredContacts();
 
 	return (
-		<div className={css.phonebook}>
-			<h1>Phonebook</h1>
-			<ContactForm />
-			<h2>Contacts</h2>
-			<Filter changeFilter={changeFilter} />
-			{contacts.length > 0 && <ContactsList contacts={filteredContacts} />}
-			{error && <h3>{error}</h3>}
-			{isLoading && <h3>Loading...</h3>}
-		</div>
+		<>
+			<div className={css.phonebook}>
+				<h1>Phonebook</h1>
+				<ContactForm />
+				<h2>Contacts</h2>
+				<Filter changeFilter={changeFilter} />
+				{contacts.length > 0 && <ContactsList contacts={filteredContacts} />}
+				{error && <h3>{error}</h3>}
+				{isLoading && <h3>Loading...</h3>}
+			</div>
+		</>
 	);
 };
 
