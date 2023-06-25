@@ -4,11 +4,16 @@ import { useNavigate } from "react-router"
 
 export const UserMenu = ({ email }) => {
 	const dispatch = useDispatch()
-const navigate = useNavigate()
-	const handleLogOut = () => {
-		dispatch(logOutThunk())
-		deleteToken()
-		navigate('/login')
+	const navigate = useNavigate()
+
+	const handleLogOut = async () => {
+		try {
+			await dispatch(logOutThunk()).unwrap()
+			deleteToken()
+			navigate('/login')
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	return (

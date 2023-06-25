@@ -26,7 +26,7 @@ const LogInPage = () => {
 		setPassword('');
 		setEmail('');
 
-		e.currentTarget.reset();
+		// e.currentTarget.reset();
 	};
 
 	useEffect(() => {
