@@ -3,6 +3,7 @@ import { lazy } from "react";
 import Layout from "../components/Layout/Layout";
 import NotFound from "./pages/NotFound/Notfound";
 import { Toaster } from "react-hot-toast";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 const Register = lazy(() => import("../components/pages/Register/Register"));
 const Contacts = lazy(() => import("../components/pages/Contacts/Contacts"));
 const LogInPage = lazy(() => import("../components/pages/LogIn/LogInPage"));
@@ -15,7 +16,9 @@ export const App = () => {
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Register />} />
 					<Route path="/login" element={<LogInPage />} />
-					<Route path="/contacts" element={<Contacts />} />
+					<Route path="/contacts" element={<PrivateRoute>
+						<Contacts />
+					</PrivateRoute>} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>

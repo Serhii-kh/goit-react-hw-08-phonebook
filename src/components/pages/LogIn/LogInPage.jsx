@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import css from './LogIn.module.css'
 import { useEffect, useState } from 'react';
-import { logInThunk } from 'components/API/api';
-import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts, logInThunk } from 'components/API/api';
+import { useDispatch, useSelector} from 'react-redux';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { getIsLoginned } from 'redux/selectors/selectors';
 
 const LogInPage = () => {
@@ -18,20 +18,22 @@ const LogInPage = () => {
 		name === 'password' ? setPassword(value) : setEmail(value);
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
 
-		dispatch(logInThunk({ password, email, }))
-
-		setPassword('');
-		setEmail('');
-
-		// e.currentTarget.reset();
+		try {
+			await dispatch(logInThunk({ password, email, })).unwrap
+			setPassword('');
+			setEmail('');
+			toast.success('You have successfully logged in!')
+			fetchContacts()
+		} catch (error) {
+			console.log(error)
+		}
 	};
 
 	useEffect(() => {
 		isLoginned && navigate('/contacts')
-		isLoginned && toast.success('You have successfully logged in!')
 	}, [isLoginned, navigate])
 
 	return (

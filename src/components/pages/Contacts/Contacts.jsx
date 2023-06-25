@@ -19,7 +19,7 @@ const Contacts = () => {
 	const isLoginned = useSelector(getIsLoginned)
 
 	useEffect(() => {
-		isLoginned && dispatch(fetchContacts())
+		dispatch(fetchContacts())
 	}, [dispatch, isLoginned])
 
 	const changeFilter = e => {
