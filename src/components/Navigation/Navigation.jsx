@@ -1,14 +1,12 @@
 import { NavLink } from "react-router-dom";
-import css from '../Navigation/Navigation.module.css'
 import { getUserEmail } from "redux/selectors/selectors";
 import { useSelector } from "react-redux";
 import { UserMenu } from "components/UserMenu/UserMenu";
+import css from '../Navigation/Navigation.module.css'
 
 export const Navigation = () => {
 	const setActive = ({ isActive }) => isActive ? 'active-link' : ''
-	// const isLoginned = useSelector(getIsLoginned)
 	const email = useSelector(getUserEmail)
-	// const navigate = useNavigate()
 
 	return (
 		<>

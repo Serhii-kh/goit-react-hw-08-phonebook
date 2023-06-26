@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { fetchContacts, logInThunk } from 'components/API/api';
-import { useDispatch, useSelector} from 'react-redux';
+import { logInThunk } from 'components/API/api';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { getIsLoginned } from 'redux/selectors/selectors';
@@ -25,10 +25,11 @@ const LogInPage = () => {
 			await dispatch(logInThunk({ password, email, })).unwrap
 			setPassword('');
 			setEmail('');
-			toast.success('You have successfully logged in!')
-			fetchContacts()
+			if (isLoginned) toast.success('You have successfully logged in!')
+			console.log(isLoginned)
 		} catch (error) {
-			console.log(error)
+			// console.log(error)
+			// toast.error('Login error!')
 		}
 	};
 

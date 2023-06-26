@@ -67,7 +67,7 @@ export const signUpThunk = createAsyncThunk(
          await usersInstance.post('/signup', body);
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue(e.response.data.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
@@ -79,8 +79,8 @@ export const getProfileThunk = createAsyncThunk(
       const { data } = await usersInstance('/current');
       return data;
     } catch (e) {
-      console.log(e);
-      return thunkAPI.rejectWithValue(e.response.data.message);
+      console.log(e.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
@@ -95,7 +95,7 @@ export const logInThunk = createAsyncThunk(
       return data;
     } catch (e) {
       console.log(e);
-      return rejectWithValue(e.response.data.message);
+       return rejectWithValue(e.message);
     }
   }
 );
@@ -104,9 +104,9 @@ export const logOutThunk = createAsyncThunk(
   'auth/logout',
   async () => {
     try {
-			return await usersInstance.post('/logout');
+      return await usersInstance.post('/logout');
     } catch (e) {
-      console.log(e);
+			console.log(e);
     }
   }
 );
