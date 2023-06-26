@@ -10,4 +10,21 @@
 
 header {
 	margin-bottom: 15px;
+	/* display: flex;
+	flex-wrap: wrap; */
+}
+
+
+button {
+  color: black;
+
+  border: 1px solid black;
+  border-radius: 4px;
+
+  background-color: snow;
+}
+
+button:hover {
+  background-color: blue;
+  color: yellow;
 }

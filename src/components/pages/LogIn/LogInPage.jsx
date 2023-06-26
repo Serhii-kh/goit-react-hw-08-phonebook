@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { logInThunk } from 'components/API/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { getIsLoginned } from 'redux/selectors/selectors';
 import css from './LogIn.module.css'
@@ -20,16 +19,13 @@ const LogInPage = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-
+		
 		try {
 			await dispatch(logInThunk({ password, email, })).unwrap
 			setPassword('');
 			setEmail('');
-			if (isLoginned) toast.success('You have successfully logged in!')
-			console.log(isLoginned)
 		} catch (error) {
-			// console.log(error)
-			// toast.error('Login error!')
+			console.log(error)
 		}
 	};
 

@@ -1,5 +1,6 @@
 import { deleteToken, logOutThunk } from "components/API/api"
 import { useDispatch } from "react-redux"
+import css from './UserMenu.module.css'
 
 export const UserMenu = ({ email }) => {
 	const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export const UserMenu = ({ email }) => {
 
 	return (
 		<>
-			<div>
+			<div className={css.UserMenu}>
 				<p>{email}</p>
 				<button type="button" onClick={handleLogOut}>Logout</button>
 			</div>
