@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "../components/Layout/Layout";
-import NotFound from "./pages/NotFound/Notfound";
 import { Toaster } from "react-hot-toast";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 const Register = lazy(() => import("../components/pages/Register/Register"));
 const Contacts = lazy(() => import("../components/pages/Contacts/Contacts"));
 const LogInPage = lazy(() => import("../components/pages/LogIn/LogInPage"));
+const NotFound = lazy(()=> import("../components//pages/NotFound/Notfound"))
 
 export const App = () => {
 	return (

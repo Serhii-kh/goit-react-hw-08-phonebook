@@ -1,10 +1,10 @@
-import css from './LogIn.module.css'
 import { useEffect, useState } from 'react';
 import { fetchContacts, logInThunk } from 'components/API/api';
 import { useDispatch, useSelector} from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { getIsLoginned } from 'redux/selectors/selectors';
+import css from './LogIn.module.css'
 
 const LogInPage = () => {
 	const [password, setPassword] = useState('');
