@@ -67,7 +67,7 @@ export const signUpThunk = createAsyncThunk(
          await usersInstance.post('/signup', body);
     } catch (e) {
       console.log(e);
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(e.response.data.message);
     }
   }
 );
@@ -95,7 +95,7 @@ export const logInThunk = createAsyncThunk(
       return data;
     } catch (e) {
       console.log(e);
-      return rejectWithValue(e);
+      return rejectWithValue(e.response.data.message);
     }
   }
 );
