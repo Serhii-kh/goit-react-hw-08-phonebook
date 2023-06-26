@@ -7,11 +7,12 @@ import { store } from 'redux/store';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode> </React.StrictMode>
+  <React.StrictMode> 
     <Provider store={store}>
       <BrowserRouter basename='/goit-react-hw-08-phonebook/'>
         <App />
       </BrowserRouter>
-    </Provider>
+	</Provider>
+	</React.StrictMode>
  
 );
